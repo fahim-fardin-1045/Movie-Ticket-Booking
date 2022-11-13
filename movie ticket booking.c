@@ -20,7 +20,7 @@ void enterchoice(void)
 	printf(" ************#######************\n");
 	printf("             1- Admin           \n");
 	printf("             2- User          \n");
-	printf("             3- Exit system:                                   \n");
+	printf("             3- Exit system:                                  \n");
 	printf("**********************\n");
 	printf("  Enter your choice: ");
 	scanf("%d",&choice);
