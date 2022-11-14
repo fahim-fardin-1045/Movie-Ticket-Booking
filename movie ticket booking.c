@@ -111,3 +111,34 @@ int changepriceticket(int price)
 		printf("The entered password is wrong! ");
 	return price;
 }
+
+	
+void insert_details()
+{
+	
+	FILE *fp;
+	struct book b;
+	
+	printf("Enetr movie code : ");	
+	scanf("%s",b.code);
+	printf("Enetr  name :");	
+	scanf("%s",b.name);
+	printf("Enetr Date:");	
+	scanf("%s",b.date);
+	printf("Enetr Ticket Price: ");	
+	scanf("%d",&b.cost);
+	
+	fp=fopen("data.txt","a");
+
+	if(fp == NULL)
+	{
+		printf("FIle not Found");
+	}
+	else
+	{
+		fprintf(fp,"%s %s %s %d \n",b.code,b.name,b.date,b.cost);
+		printf("Record insert Sucessfull ");
+	}
+		printf("\n");
+	fclose(fp);
+}
