@@ -3,8 +3,8 @@
 #include<time.h>
 
 void enterchoice(void);
-
-
+void changepriceticket();
+void insert_details();
 
 
 
@@ -20,13 +20,18 @@ void gotoxy (int x, int y)
 
 int main()
 {
-    int count = 0;
 
-    int choice,price;
+	 int count = 0;
+	int **seatnum,choice,price=500,selection,i;
+	seatnum=(int **)calloc(101,sizeof(int *));
+	for (i=0;i<3;i++)
+		*(seatnum+i)=(int *)calloc(101,sizeof(int ));
+	int x;
+	char pass[10],pak[10]="user";
 
     while(x!=3)
 	{
-        a:choice=enterchoice();
+        a:choice = enterchoice();
 		switch(choice)
 		{
 		    int y;
@@ -38,6 +43,7 @@ int main()
                 printf(" 2- To view reserved tickets:   \n");
                 printf(" 3- Exit  System:        \n");
 	            scanf("%d", &ch);
+	            
 	            switch(ch){
             case 1:
                 price=changepriceticket(price);
@@ -62,13 +68,13 @@ int main()
 	/////next ///////
 
 
-}
-
 //return 0;
+      }
+
 }
 
 
-
+}
 
 COORD coord = {0, 0};
 void gotoxy (int x, int y)
@@ -94,7 +100,7 @@ void enterchoice(void)
 
 
 
-int changepriceticket(int price)
+void changepriceticket(int price)
 {
 	char pass[10],pak[10]="fahim";
 	printf("Enter the password to change price of ticket: ");
@@ -112,22 +118,21 @@ int changepriceticket(int price)
 	return price;
 }
 
-	
 void insert_details()
 {
-	
+
 	FILE *fp;
 	struct book b;
-	
-	printf("Enetr movie code : ");	
+
+	printf("Enetr movie code : ");
 	scanf("%s",b.code);
-	printf("Enetr  name :");	
+	printf("Enetr  name :");
 	scanf("%s",b.name);
-	printf("Enetr Date:");	
+	printf("Enetr Date:");
 	scanf("%s",b.date);
-	printf("Enetr Ticket Price: ");	
+	printf("Enetr Ticket Price: ");
 	scanf("%d",&b.cost);
-	
+
 	fp=fopen("data.txt","a");
 
 	if(fp == NULL)
