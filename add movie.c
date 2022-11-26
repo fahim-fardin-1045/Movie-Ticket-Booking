@@ -67,8 +67,27 @@ void Add_Movie_details()
 	}
 		printf("\n");
 
+        printf("Adding movie. Please wait");
+
+                    Sleep(1000);
+
+                    printf(".");
+
+                    Sleep(1000);
+
+                    printf(".");
+
+                    Sleep(1000);
+
+                    printf(".");
+
+                    Sleep(1000);
+
+                   printf("\n Movie added successfully...");
+
+                printf("\n");
+
+
 	fclose(fp);
 
 }
-
-
