@@ -343,7 +343,7 @@ void menu()
 
     case 3:
 
-        exit(1);
+        exit(0);
 
 
         break;
@@ -1448,6 +1448,8 @@ next:
 
             scanf("%lld",&mobile);
 
+          //////  if(!isdigit(mobile))
+
             if(mobile<=00000000000)
 
             {
@@ -1484,25 +1486,26 @@ seats:
 
 
 
-            printf("\t\t Select rows:\n");
+            printf("\n\n\t\t Select rows:\n");
 
 
 
-            printf("\t\t 1.Row 1 to 4: %d Tk  per seat (%d seats available)\n",b.r1,s1);
+            printf("\n\t\t 1.Row 1 to 4: %d Tk  per seat (%d seats available)\n",b.r1,s1);
 
 
-            printf("\t\t 2.Row 5 to 8: %d Tk per seat (%d seats available)\n",b.r2,s2);
-
-            printf("\t\t 3.Row 9 to 12: %d Tk per seat (%d seats available)\n",b.r3,s3);
+            printf("\n\t\t 2.Row 5 to 8: %d Tk per seat (%d seats available)\n",b.r2,s2);
 
 
-            printf("\t\t 4.Balcony: %d Tk per seat (%d seats available)\n",b.balcony,s4);
+            printf("\n\t\t 3.Row 9 to 12: %d Tk per seat (%d seats available)\n",b.r3,s3);
+
+
+            printf("\n\t\t 4.Balcony: %d Tk per seat (%d seats available)\n",b.balcony,s4);
 
 
             ////////////////////////////
 
 
-printf("\t\t\t Enter your choice: ");
+printf("\n\t\t Enter your choice: ");
 
             scanf("%d",&row);
 
@@ -1528,7 +1531,7 @@ printf("\t\t\t Enter your choice: ");
 
             {
 
-                printf("\nWrong Choice!!!");
+                printf("\n\t\t Wrong Choice!!!");
 
                 goto seats;
 
@@ -1629,7 +1632,7 @@ choice1:
 
 choice2:
 
-                    printf("\nDo you want to change row?(1=Yes, 0=No)");
+                    printf("\n\t\t Do you want to change row?(1=Yes, 0=No)");
 
                     scanf("%d",&ch1);
 
@@ -1651,7 +1654,7 @@ choice2:
 
                     {
 
-                        printf("\nWrong choice!!!");
+                        printf("\n\t\t Wrong choice!!!");
 
                         goto choice2;
 
@@ -1844,8 +1847,10 @@ booking:
                 printf("\n\nThank You! Visit again!!!\n\n");
 
                 Sleep(2000);
+                ////////////////////////////////////////
+             ////  getch();
 
-                menu();                      //////////////////////////////////////////////////////////////////
+               menu();                      //////////////////////////////////////////////////////////////////
 
                 ufp=fopen("OldTransaction.txt","a");
 
@@ -1885,9 +1890,11 @@ booking:
 
         {
 
-            printf("No problem! Visit after few days!");
+            printf("\t\t No problem! Visit after few days!");
 
-            exit(0);
+            getch();
+
+            User();
 
         }
 
@@ -1895,7 +1902,7 @@ booking:
 
         {
 
-            printf("\nWrong Choice!!!");
+            printf("\n\t\tWrong Choice!!!");
 
             goto choose;
 
@@ -1904,6 +1911,8 @@ booking:
     }
 
 }
+
+
 
 
 
@@ -1918,11 +1927,6 @@ void Old_Transactions()
     int l;
 
     FILE *fp;
-
-
-
-    //system("clear");
-
 
 
     fp = fopen("OldTransaction.txt","r");
@@ -1945,7 +1949,7 @@ void Old_Transactions()
 
         system("cls");
 
-login:
+        login:
 
         {
 
@@ -1965,7 +1969,7 @@ login:
 
                     p[l]='\0';
 
-                    break;
+                break;
 
                 }
 
@@ -1989,7 +1993,7 @@ login:
 
                 {
 
-                    continue;
+                 continue;
 
                 }
 
@@ -2043,9 +2047,9 @@ login:
 
                 while( ( ch = fgetc(fp))!=EOF)
 
-                    printf("%c",ch);
+                printf("%c",ch);
 
-                printf("===============================================\n\n");
+                  printf("===============================================\n\n");
 
             }
 
@@ -2082,124 +2086,125 @@ void Delete_Transactions()
 
     char temp2,password[]="password",p[100];
 
-login:
-
-    {
-
-        l=0;
-
-        printf("\nEnter Password:");
-
-        while(1)
+        login:
 
         {
 
-            temp2=getch();
+            l=0;
 
-            if(temp2=='\r')
+            printf("\nEnter Password:");
 
-            {
-
-                p[l]='\0';
-
-                break;
-
-            }
-
-            else if(temp2=='\b')
+            while(1)
 
             {
 
-                if(l>0)
+                temp2=getch();
+
+                if(temp2=='\r')
 
                 {
 
-                    l--;
+                    p[l]='\0';
 
-                    printf("\b \b");
+                break;
+
+                }
+
+                else if(temp2=='\b')
+
+                {
+
+                    if(l>0)
+
+                    {
+
+                        l--;
+
+                        printf("\b \b");
+
+                    }
+
+                }
+
+                else if(temp2=='\t'||temp2==' ')
+
+                {
+
+                 continue;
+
+                }
+
+                else
+
+                {
+
+                    p[l]=temp2;
+
+                    l++;
+
+                    printf("*");
+
+                }
+
+
+
+            }
+
+            //scanf("%s",&p);
+
+            if(strcmp(p,password)==0)
+
+            {
+
+                printf("\nPassword matched...");
+
+                fp = fopen("OldTransaction.txt","w");
+
+                if(fp == NULL)
+
+                {
+
+                    printf("file does not found!");
+
+                    exit(1);
+
+                }
+
+                else
+
+                {
+
+                    printf("\nDeleting old transactions");
+
+                    Sleep(1000);
+
+                    printf(".");
+
+                    Sleep(1000);
+
+                    printf(".");
+
+                    Sleep(1000);
+
+                    printf(".");
+
+                    Sleep(1000);
+
+                    printf("\nOld transactions Deleted Successfully!!!\n");
+
+                    Sleep(2000);
+
+                    main();
 
                 }
 
             }
 
-            else if(temp2=='\t'||temp2==' ')
-
-            {
-
-                continue;
-
-            }
-
             else
-
-            {
-
-                p[l]=temp2;
-
-                l++;
-
-                printf("*");
-
-            }
-
-
-
-        }
-
-
-        if(strcmp(p,password)==0)
-
-        {
-
-            printf("\nPassword matched...");
-
-            fp = fopen("OldTransaction.txt","w");
-
-            if(fp == NULL)
-
-            {
-
-                printf("file does not found!");
-
-                exit(1);
-
-            }
-
-            else
-
-            {
-
-                printf("\nDeleting old transactions");
-
-                Sleep(1000);
-
-                printf(".");
-
-                Sleep(1000);
-
-                printf(".");
-
-                Sleep(1000);
-
-                printf(".");
-
-                Sleep(1000);
-
-                printf("\nOld transactions Deleted Successfully!!!\n");
-
-                Sleep(2000);
-
-                menu();
-
-            }
-
-        }
-
-        else
 
             goto login;
 
-    }
+        }
 
     fclose(fp);
 
