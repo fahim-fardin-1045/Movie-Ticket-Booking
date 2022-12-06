@@ -343,7 +343,7 @@ void menu()
 
     case 3:
 
-        exit(0);
+        exit(1);
 
 
         break;
@@ -352,7 +352,9 @@ void menu()
 
         printf("\nWrong choice!!!\nTry Again!!!");
 
-        break;
+        //   getch();
+
+        menu();
 
     }
 
@@ -433,7 +435,7 @@ void Admin()
 
         printf("\nWrong choice!!!\nTry Again!!!");
 
-        break;
+        Admin();
 
     }
 
@@ -505,7 +507,7 @@ void User()
 
         printf("\nWrong choice!!!\nTry Again!!!");
 
-        break;
+        User();
 
     }
 
@@ -577,7 +579,7 @@ void user_login()
 
         printf("\nWrong choice!!!\nTry Again!!!");
 
-        break;
+        user_login();
 
     }
 
@@ -856,11 +858,24 @@ void View_Movie()
 
             //printf("\nTicket pricing:\n\t\tRow 1 to 4: %d Rs.\n\t\tRow 5 to 8: %d Rs.\n\t\tRow 9 to 12: %d Rs.\n\t\tBalcony: %d Rs.\n\n",b.r1,b.r2,b.r3,b.balcony);
 
-            Sleep(2000);
+            //Sleep(2000);
+
 
             fclose(fp);
-            getch();
-            User();
+
+            int c;
+            gotoxy(20,24);
+            printf(" press 1 to exit: ");
+            scanf("%d",&c);
+
+            if(c==1)
+            {
+
+                User();
+
+            }
+
+
 
         }
 
@@ -1024,7 +1039,7 @@ login:
             if(fp==NULL)
 
             {
-gotoxy(30,3);
+                gotoxy(30,3);
                 printf("File not Found");
 
             }
@@ -1088,7 +1103,7 @@ gotoxy(30,3);
         else if(strcmp(p,p1)==0||strcmp(p,p2)==0)
 
         {
-gotoxy(20,19);
+            gotoxy(20,19);
             printf("Okay! Precess cancelled. Returning to Admin Panel");
 
             Sleep(1000);
@@ -1111,7 +1126,7 @@ gotoxy(20,19);
         else
 
         {
-gotoxy(20,19);
+            gotoxy(20,19);
             printf("Invalid Password!!!");
 
             goto login;
@@ -1146,7 +1161,7 @@ login:
     {
 
         l=0;
-gotoxy(20,3);
+        gotoxy(20,3);
         printf("Enter Password:");
 
         while(1)
@@ -1208,7 +1223,7 @@ gotoxy(20,3);
         if(strcmp(p,password)==0)
 
         {
-gotoxy(30,6);
+            gotoxy(30,6);
             printf("Password matched...\n");
 
             fp = fopen("data.txt","w");
@@ -1216,7 +1231,7 @@ gotoxy(30,6);
             if(fp == NULL)
 
             {
-gotoxy(30,8);
+                gotoxy(30,8);
                 printf("file does not found!");
 
                 exit(1);
@@ -1226,7 +1241,7 @@ gotoxy(30,8);
             else
 
             {
-  gotoxy(20,10);
+                gotoxy(20,10);
                 printf("Deleting movie");
 
                 Sleep(1000);
@@ -1242,7 +1257,7 @@ gotoxy(30,8);
                 printf(".");
 
                 Sleep(1000);
-gotoxy(30,12);
+                gotoxy(30,12);
                 printf("Movie Deleted Successfully!!!\n\n");
 
                 Sleep(3000);
@@ -1305,7 +1320,8 @@ void Book_Ticket()
     {
 
         printf("\n     No Movie is available to book right now! Check after few days!!!");
-        getch();
+        //  getch();
+        Sleep(3000);
         User();
 
     }
@@ -1374,7 +1390,7 @@ choose:
 
         {
 
- system("cls");
+            system("cls");
 
             printf("\t\t   \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Fill Deatails \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
 
@@ -1448,7 +1464,6 @@ next:
 
             scanf("%lld",&mobile);
 
-          //////  if(!isdigit(mobile))
 
             if(mobile<=00000000000)
 
@@ -1505,7 +1520,7 @@ seats:
             ////////////////////////////
 
 
-printf("\n\t\t Enter your choice: ");
+            printf("\n\t\t Enter your choice: ");
 
             scanf("%d",&row);
 
@@ -1794,7 +1809,14 @@ booking:
 
 /////////////////////////////////////////////////////////////////////////////////
 
-                printf("\nTckets Booked successfully!!!\n*** ENJOY MOVIE ***\nGenerating Bill");
+                system("cls");
+                gotoxy(30,3);
+                printf("Tckets Booked successfully!!!");
+                gotoxy(35,5);
+                printf(" *** ENJOY MOVIE *** ");
+                gotoxy(35,7);
+                printf(" Generating Bill");
+
 
                 Sleep(750);
 
@@ -1809,48 +1831,54 @@ booking:
                 printf(".");
 
                 Sleep(750);
-
-                printf("\n\t\t*** Bill ***");
-
-                printf("\n========================================================");
-
-                printf("\n\t\tName : %s %s",name1,name2);
-
-                printf("\n\t\tMobile Number : %lld",mobile);
-
-                printf("\n\t\tMovie name : %s",b.name);
+                gotoxy(35,9);
+                printf("\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2Bill");
+                gotoxy(20,11);
+                printf("\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+                gotoxy(20,13);
+                printf("Name : %s %s",name1,name2);
+                gotoxy(20,15);
+                printf("Mobile Number : %lld",mobile);
+                gotoxy(20,17);
+                printf("Movie name : %s",b.name);
 
                 if(temp_row==1)
-
-                    printf("\n\t\tRow : 1 to 4");
-
+                {
+                    gotoxy(20,19);
+                    printf("Row : 1 to 4");
+                }
                 else if(temp_row==2)
-
-                    printf("\n\t\tRow : 5 to 8");
-
+                {
+                    gotoxy(20,19);
+                    printf("Row : 5 to 8");
+                }
                 else if(temp_row==3)
-
-                    printf("\n\t\tRow : 9 to 12");
-
+                {
+                    gotoxy(20,19);
+                    printf("Row : 9 to 12");
+                }
                 else if(temp_row==4)
+                {
+                    gotoxy(20,19);
+                    printf("Row : Balcony");
+                }
+                gotoxy(20,21);
+                printf("Total seats : %d",total_seat);
+                gotoxy(20,23);
+                printf("Cost per ticket : %d Tk",row);
+                gotoxy(20,25);
+                printf("Total Amount : %d TK",total_amount);
+                gotoxy(20,27);
+                //printf("========================================================");
+                printf("********************************************************");
+                gotoxy(20,29);
+                printf("Thank You! Visit again!!!\n\n");
 
-                    printf("\n\t\tRow : Balcony");
-
-                printf("\n\t\tTotal seats : %d",total_seat);
-
-                printf("\n\t\tCost per ticket : %d Rs.",row);
-
-                printf("\n\t\tTotal Amount : %d Rs.",total_amount);
-
-                printf("\n========================================================");
-
-                printf("\n\nThank You! Visit again!!!\n\n");
-
-                Sleep(2000);
+                Sleep(3000);
                 ////////////////////////////////////////
-             ////  getch();
+                //// getch();
 
-               menu();                      //////////////////////////////////////////////////////////////////
+                // menu();                      //////////////////////////////////////////////////////////////////
 
                 ufp=fopen("OldTransaction.txt","a");
 
@@ -1882,6 +1910,18 @@ booking:
 
                 fclose(ufp);
 
+                int c;
+                gotoxy(20,31);
+                printf("press 1 to exit: ");
+                scanf("%d",&c);
+
+                if(c==1)
+                {
+
+                    User();
+
+                }
+
             }
 
         }
@@ -1892,7 +1932,7 @@ booking:
 
             printf("\t\t No problem! Visit after few days!");
 
-            getch();
+            //  getch();
 
             User();
 
@@ -1929,6 +1969,11 @@ void Old_Transactions()
     FILE *fp;
 
 
+
+    //system("clear");
+
+
+
     fp = fopen("OldTransaction.txt","r");
 
     if(fp == NULL)
@@ -1949,7 +1994,7 @@ void Old_Transactions()
 
         system("cls");
 
-        login:
+login:
 
         {
 
@@ -1969,7 +2014,7 @@ void Old_Transactions()
 
                     p[l]='\0';
 
-                break;
+                    break;
 
                 }
 
@@ -1993,7 +2038,7 @@ void Old_Transactions()
 
                 {
 
-                 continue;
+                    continue;
 
                 }
 
@@ -2047,9 +2092,9 @@ void Old_Transactions()
 
                 while( ( ch = fgetc(fp))!=EOF)
 
-                printf("%c",ch);
+                    printf("%c",ch);
 
-                  printf("===============================================\n\n");
+                printf("===============================================\n\n");
 
             }
 
@@ -2069,6 +2114,18 @@ void Old_Transactions()
 
     fclose(fp);
 
+    int c;
+    printf("press 1 to exit: ");
+    scanf("%d",&c);
+
+    if(c==1)
+    {
+
+        Admin();
+
+    }
+
+
 }
 
 
@@ -2079,134 +2136,133 @@ void Delete_Transactions()
 {
 
     system("color 30");
-
+    system("cls");
     int l;
 
     FILE *fp;
 
     char temp2,password[]="password",p[100];
 
-        login:
+login:
+
+    {
+
+        l=0;
+        gotoxy(20,3);
+        printf("Enter Password:");
+
+        while(1)
 
         {
 
-            l=0;
+            temp2=getch();
 
-            printf("\nEnter Password:");
-
-            while(1)
+            if(temp2=='\r')
 
             {
 
-                temp2=getch();
-
-                if(temp2=='\r')
-
-                {
-
-                    p[l]='\0';
+                p[l]='\0';
 
                 break;
 
-                }
-
-                else if(temp2=='\b')
-
-                {
-
-                    if(l>0)
-
-                    {
-
-                        l--;
-
-                        printf("\b \b");
-
-                    }
-
-                }
-
-                else if(temp2=='\t'||temp2==' ')
-
-                {
-
-                 continue;
-
-                }
-
-                else
-
-                {
-
-                    p[l]=temp2;
-
-                    l++;
-
-                    printf("*");
-
-                }
-
-
-
             }
 
-            //scanf("%s",&p);
-
-            if(strcmp(p,password)==0)
+            else if(temp2=='\b')
 
             {
 
-                printf("\nPassword matched...");
-
-                fp = fopen("OldTransaction.txt","w");
-
-                if(fp == NULL)
+                if(l>0)
 
                 {
 
-                    printf("file does not found!");
+                    l--;
 
-                    exit(1);
-
-                }
-
-                else
-
-                {
-
-                    printf("\nDeleting old transactions");
-
-                    Sleep(1000);
-
-                    printf(".");
-
-                    Sleep(1000);
-
-                    printf(".");
-
-                    Sleep(1000);
-
-                    printf(".");
-
-                    Sleep(1000);
-
-                    printf("\nOld transactions Deleted Successfully!!!\n");
-
-                    Sleep(2000);
-
-                    main();
+                    printf("\b \b");
 
                 }
+
+            }
+
+            else if(temp2=='\t'||temp2==' ')
+
+            {
+
+                continue;
 
             }
 
             else
 
-            goto login;
+            {
+
+                p[l]=temp2;
+
+                l++;
+
+                printf("*");
+
+            }
+
+
 
         }
+
+        //scanf("%s",&p);
+
+        if(strcmp(p,password)==0)
+
+        {
+
+            printf("Password matched...");
+
+            fp = fopen("OldTransaction.txt","w");
+
+            if(fp == NULL)
+
+            {
+                gotoxy(20,4);
+                printf("file does not found!");
+
+                exit(1);
+
+            }
+
+            else
+
+            {
+                gotoxy(20,6);
+                printf("Deleting old transactions");
+
+                Sleep(1000);
+
+                printf(".");
+
+                Sleep(1000);
+
+                printf(".");
+
+                Sleep(1000);
+
+                printf(".");
+
+                Sleep(1000);
+                gotoxy(20,8);
+                printf("Old transactions Deleted Successfully!!!\n");
+
+                Sleep(2000);
+
+                main();
+
+            }
+
+        }
+
+        else
+
+            goto login;
+
+    }
 
     fclose(fp);
 
 }
-
