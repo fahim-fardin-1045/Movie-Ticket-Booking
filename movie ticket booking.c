@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 
 #include<stdlib.h>
@@ -771,10 +772,6 @@ void login()
     if(D==1)
 
         login();
-
-    else
-        exit(0);
-
 }
 
 
@@ -804,7 +801,7 @@ void View_Movie()
 
         printf("file does not found !");
 
-        exit(1);
+       return;
 
 
 
@@ -874,7 +871,6 @@ void View_Movie()
                 User();
 
             }
-
 
 
         }
@@ -1085,7 +1081,7 @@ login:
 
                 Sleep(1000);
 
-                Admin();
+            //    Admin();
 
 
 
@@ -1095,6 +1091,9 @@ login:
             printf("\n");
 
             fclose(fp);
+
+            Admin();
+
 
 
 
@@ -1381,7 +1380,9 @@ choose:
         fscanf(fp,"%s  %s  %d  %d  %d  %d\n%d %d %d %d",b.name,b.date,&b.r1,&b.r2,&b.r3,&b.balcony,&s1,&s2,&s3,&s4);
 
         fclose(fp);
+
         gotoxy(14,15);
+
         printf("Do you want to Book tickets for above movie?(y/n)\n");
 
         scanf("%s",&choice);
@@ -1832,7 +1833,7 @@ booking:
 
                 Sleep(750);
                 gotoxy(35,9);
-                printf("\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2Bill");
+                printf("\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Bill ");
                 gotoxy(20,11);
                 printf("\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
                 gotoxy(20,13);
@@ -2231,6 +2232,7 @@ login:
 
             {
                 gotoxy(20,6);
+
                 printf("Deleting old transactions");
 
                 Sleep(1000);
@@ -2246,7 +2248,9 @@ login:
                 printf(".");
 
                 Sleep(1000);
+
                 gotoxy(20,8);
+
                 printf("Old transactions Deleted Successfully!!!\n");
 
                 Sleep(2000);
